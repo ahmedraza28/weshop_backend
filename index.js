@@ -84,9 +84,9 @@ app.post('/upload', upload.single('image'), async (req, res) => {
       if (externalApiResponse.status === 200 && externalApiResponse.data) {
         // Save the received data as a .npy file
         const npyName = 'npyFile-' + Date.now() + '.npy';
-        const npyPath = path.join('uploads', npyName);
+        const npyPath = path.join('https://weshop-backend.onrender.com/files/npy', npyName);
         fs.writeFileSync(npyPath, externalApiResponse.data);
-  
+        const imgPath = path.join('https://weshop-backend.onrender.com/files/image/', imageName);
         // Store file paths in the database
         const newFile = new File({
           imageName: imageName,
@@ -96,7 +96,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         });
         await newFile.save();
   
-        res.send(`${imagePath} image path, ${npyPath} npy path`);
+        res.send(`${imgPath} image path, ${npyPath} npy path`);
       } else {
         res.status(400).send('Invalid response from the external API');
       }
