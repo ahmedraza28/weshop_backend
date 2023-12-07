@@ -9,10 +9,18 @@ const fs = require('fs');
 const FormData = require('form-data');
 const AdmZip = require('adm-zip'); // Import the adm-zip library
 
+// // MongoDB connection
+// mongoose.connect('mongodb://localhost:27017/Weshopfiles', { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log('Connected to MongoDB...'))
+//   .catch(err => console.error('Could not connect to MongoDB...', err));
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/Weshopfiles', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...', err));
+mongoose.connect('mongodb+srv://admin:admin@cluster0.y8ueoox.mongodb.net/Weshopfiles', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('Connected to MongoDB Atlas...'))
+  .catch(err => console.error('Could not connect to MongoDB Atlas...', err));
+
 
   const fileSchema = new mongoose.Schema({
     imageName: String,
